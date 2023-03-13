@@ -1,0 +1,15 @@
+2a60927148abd1d33b818b535e306557
+::res://::1678715995
+default_env.tres::Environment::-1::1678662773::0::1::::<><>::
+icon.png::CompressedTexture2D::995748887588337726::1678662773::1678662803::1::::<><>::
+::res://addons/::1678662773
+::res://icons/::1678670533
+edit-4-svgrepo-com.png::CompressedTexture2D::8727225000683136966::1678670529::1678670533::1::::<><>::
+::res://scenes/::1678683326
+AppCardButton.gd::GDScript::-1::1678683244::0::1::::<>Button<>::
+main.gd::GDScript::-1::1678682971::0::1::::<>Control<>::
+main.tscn::PackedScene::3074667526368123310::1678683326::0::1::::<><>::res://scenes/main.gd<>uid://bsujdpgta3q3a<>uid://dwlsedr5ye1jm<>res://scenes/AppCardButton.gd
+test.gd::GDScript::-1::1678665929::0::1::::<>Control<>::
+test.tscn::PackedScene::7481920633896886866::1678683251::0::1::::<><>::res://scenes/test.gd
+::res://themes/::1678679417
+main.tres::Theme::3691660032558964024::1678679417::0::1::::<><>::
