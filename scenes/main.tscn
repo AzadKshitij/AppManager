@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bj2nlbvvl3kl7"]
+[gd_scene load_steps=7 format=3 uid="uid://bj2nlbvvl3kl7"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_3klm5"]
 [ext_resource type="Theme" uid="uid://bsujdpgta3q3a" path="res://themes/main.tres" id="1_jik11"]
 [ext_resource type="Texture2D" uid="uid://dwlsedr5ye1jm" path="res://icons/edit-4-svgrepo-com.png" id="3_nxaer"]
 [ext_resource type="Script" path="res://scenes/AppCardButton.gd" id="3_nxc44"]
+[ext_resource type="Texture2D" uid="uid://bwgdlesccfp87" path="res://icons/image-svgrepo-com.png" id="5_g0ym6"]
+[ext_resource type="Script" path="res://scenes/AppImageAction.gd" id="6_els81"]
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" node_paths=PackedStringArray("app_grid_container", "app_card", "fileDialogue")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,6 +16,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_jik11")
 script = ExtResource("1_3klm5")
+app_grid_container = NodePath("VBoxContainer/ScrollContainer/AppGridContainer")
+app_card = NodePath("VBoxContainer/ScrollContainer/AppGridContainer/AppCard")
+fileDialogue = NodePath("FileDialog")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -81,7 +86,6 @@ theme_override_constants/v_separation = 10
 columns = 6
 
 [node name="AppCard" type="Button" parent="VBoxContainer/ScrollContainer/AppGridContainer"]
-visible = false
 custom_minimum_size = Vector2(175, 250)
 layout_mode = 2
 script = ExtResource("3_nxc44")
@@ -106,10 +110,11 @@ offset_top = 62.0
 offset_right = 37.0
 offset_bottom = 136.0
 grow_horizontal = 2
-texture = ExtResource("3_nxaer")
+texture = ExtResource("5_g0ym6")
 expand_mode = 1
+script = ExtResource("6_els81")
 
-[node name="AppName" type="Label" parent="VBoxContainer/ScrollContainer/AppGridContainer/AppCard"]
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/ScrollContainer/AppGridContainer/AppCard"]
 custom_minimum_size = Vector2(175, 90)
 layout_mode = 1
 anchors_preset = 12
@@ -119,18 +124,42 @@ anchor_bottom = 1.0
 offset_top = -92.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
+color = Color(0.156863, 0.156863, 0.156863, 1)
+
+[node name="AppName" type="Label" parent="VBoxContainer/ScrollContainer/AppGridContainer/AppCard/ColorRect"]
+custom_minimum_size = Vector2(175, 90)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Test App"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="DeleteButton" type="Button" parent="VBoxContainer/ScrollContainer/AppGridContainer/AppCard"]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 10.0
+offset_right = 165.0
+offset_bottom = 38.0
+icon = ExtResource("3_nxaer")
+expand_icon = true
+
 [node name="FileDialog" type="FileDialog" parent="."]
-title = "Open a File"
+title = "Select a file"
 position = Vector2i(20, 110)
 size = Vector2i(1160, 520)
+unresizable = true
+popup_window = true
 ok_button_text = "Open"
 file_mode = 0
 access = 2
 
 [connection signal="pressed" from="Header/HBoxContainer/Add" to="." method="_on_add_pressed"]
 [connection signal="pressed" from="VBoxContainer/ScrollContainer/AppGridContainer/AppCard" to="VBoxContainer/ScrollContainer/AppGridContainer/AppCard" method="_on_pressed"]
+[connection signal="gui_input" from="VBoxContainer/ScrollContainer/AppGridContainer/AppCard/AppImage" to="VBoxContainer/ScrollContainer/AppGridContainer/AppCard/AppImage" method="_on_gui_input"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

@@ -10,7 +10,7 @@ func _on_pressed():
 	while thread.is_alive():
 		await get_tree().process_frame
 	thread.wait_to_finish()
-	thread = null
+#	thread = null
 
 func _thread():
 	OS.execute(path, [])

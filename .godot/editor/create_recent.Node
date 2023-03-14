@@ -1,8 +1,12 @@
+PopupPanel
+Popup
+LineEdit
+Control
+Window
+ColorRect
 Label
 TextureRect
 Button
-ColorRect
-Control
 Panel
 GridContainer
 ScrollContainer
